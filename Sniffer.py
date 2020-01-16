@@ -28,7 +28,11 @@ def PacketHandler(pkt):
             SendtoServer(pkt.addr2,pkt.info,location,time_log)
 
 def SendtoServer(MAC,SSID,Location,Time):
-    url = urllib2.quote("http://www.ianmatlak.com/add_data.php?MAC="+MAC+"&SSID="+SSID+"&Location="+Location+"&TIME="+Time+"/",':/')
+    url = urllib2.quote("http://www.ianmatlak.com:8443/add_data.php?MAC="+MAC+"&SSID="+SSID+"&Location="+Location+"&TIME="+Time+"/",':/')
+    # Can be used to replace characters that dont get parsed correctly
+    # Might not need to do this though. It still might go through with 
+    # %3 and %20 because the system knows those represent white space and ':'
+    #url = url.replace('%3',':')
     wp = urllib2.urlopen(url)
     pw = wp.read()
     print(pw)
