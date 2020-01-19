@@ -2,11 +2,12 @@
 from scapy.all import *
 from datetime import datetime
 import urllib2
-
+import csv
 
 #Holds addresses
 clientprobes = []
-location = "home"
+location = 'home'
+count = 0
 
 def PacketHandler(pkt):
     # filter if packet is probe request
@@ -17,18 +18,22 @@ def PacketHandler(pkt):
             # shows packet mac address 
             testcase = (pkt.addr2 + '---' + pkt.info)
         else:
-            pkt.info = "Unknown"
+            pkt.info = 'Unknown'
             testcase = (pkt.addr2 + '---' + pkt.info)
         if testcase not in clientprobes:
             # datetime object containing current date and time
             now = datetime.now()
-            time_log = now.strftime("%m/%d/%y %H:%M:%S")
+            time_log = now.strftime('%m/%d/%y %H:%M:%S')
             clientprobes.append(testcase)
             print ("New Probe Found: " + pkt.addr2 + ' ' +  ' ' + pkt.info + ' ' + time_log)
-            SendtoServer(pkt.addr2,pkt.info,location,time_log)
+            #SendtoServer(pkt.addr2,pkt.info,location,time_log)
+            with open('data.csv','a') as file:
+                writer = csv.writer(file)
+                writer.writerow(['MAC','SSID','Time'])
+                writer.writerow([pkt.addr2, pkt.info, time_log])
 
 def SendtoServer(MAC,SSID,Location,Time):
-    url = urllib2.quote("http://www.ianmatlak.com:8443/add_data.php?MAC="+MAC+"&SSID="+SSID+"&Location="+Location+"&TIME="+Time+"/",':/')
+    url = urllib2.quote('http://www.ianmatlak.com:8443/add_data.php?MAC='+MAC+'&SSID='+SSID+'&Location='+Location+'&TIME='+Time+'/',':/')
     # Can be used to replace characters that dont get parsed correctly
     # Might not need to do this though. It still might go through with 
     # %3 and %20 because the system knows those represent white space and ':'
@@ -37,5 +42,5 @@ def SendtoServer(MAC,SSID,Location,Time):
     pw = wp.read()
     print(pw)
 
-sniff(iface="wlan0mon", prn = PacketHandler,   store=0)
-print("after sniff")
+sniff(iface='wlan0mon', prn = PacketHandler,   store=0)
+print('after sniff')
