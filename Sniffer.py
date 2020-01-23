@@ -27,7 +27,7 @@ def PacketHandler(pkt):
 
             # datetime object containing current date and time
             now = datetime.now()
-            time_log = now.strftime('%m/%d/%y %H:%M:%S')
+            time_log = now.strftime('%m/%d/%y_%H:%M:%S')
             clientprobes.append(testcase)
             print ("New Probe Found: ", pkt.addr2, ' ',  ' ', pkt_info, ' ', time_log)
             SendtoServer(str(pkt.addr2),str(pkt_info),str(location),str(time_log))
@@ -37,9 +37,9 @@ def PacketHandler(pkt):
                 writer.writerow([pkt.addr2, pkt_info, time_log])
 
 def SendtoServer(MAC,SSID,Location,Time):
-    url = 'http://www.ianmatlak.com:8443/add_data.php?MAC=' + urllib.parse.quote(MAC + '&SSID='+SSID+'&Location='+Location+'&TIME='+Time +'/') 
+    url = ('http://www.ianmatlak.com:8443/add_data.php?MAC=' + MAC + '&SSID='+SSID+'&Location='+Location+'&TIME='+Time +'/')
     #+'/',':/')
-    print(str(url))
+    print(url)
     # Can be used to replace characters that dont get parsed correctly
     # Might not need to do this though. It still might go through with 
     # %3 and %20 because the system knows those represent white space and ':'
