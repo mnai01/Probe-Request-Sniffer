@@ -23,7 +23,7 @@ def PacketHandler(pkt):
             testcase = (pkt.addr2, pkt.info)
         if testcase not in clientprobes:
             # decode pkt.info so b ' is not in the beginning
-            pkt_info = pkt.info.decode("utf-8")
+            pkt_info = pkt.info.decode("utf-8").replace(' ','_')
 
             # datetime object containing current date and time
             now = datetime.now()
