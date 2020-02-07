@@ -23,6 +23,7 @@ Aircrack-ng
 sniff(iface='YOUR-CARD-NAME', prn = PacketHandler, store=0)
 ```
 
+**Table Layout**
 ```sql
 CREATE TABLE `tbl_Probes` (
  `MAC_Address` varchar(17) NOT NULL,
