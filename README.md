@@ -4,7 +4,7 @@ Tested using Kali Linux VirtualBox 32-Bit v2020.1
 
 Python v3.8.0
 
-Required package:
+**Required package:**
 
 sudo apt-get install python-scapy
 
