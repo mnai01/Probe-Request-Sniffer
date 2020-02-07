@@ -16,8 +16,9 @@ NIC(monitor mode enabled)
 
 Aircrack-ng
 
-**Add connection credentials and place file in webserver where db is.
-Also in Sniffer.py change sniff()**
+**Add connection credentials and place file in webserver where db is.**
+
+**In Sniffer.py change sniff()**
 ```python
 sniff(iface='YOUR-CARD-NAME', prn = PacketHandler, store=0)
 ```
