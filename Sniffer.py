@@ -37,7 +37,7 @@ def PacketHandler(pkt):
                 writer.writerow([pkt.addr2, pkt_info, time_log])
 
 def SendtoServer(MAC,SSID,Location,Time):
-    url = ('http://www.ianmatlak.com:8443/add_data.php?MAC=' + MAC + '&SSID='+SSID+'&Location='+Location+'&TIME='+Time +'/')
+    url = ('http://www.ianmatlak.com/add_data.php?MAC=' + MAC + '&SSID='+SSID+'&Location='+Location+'&TIME='+Time +'/')
     #+'/',':/')
     print(url)
     # Can be used to replace characters that dont get parsed correctly
