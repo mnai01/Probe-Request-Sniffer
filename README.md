@@ -1,5 +1,7 @@
 # Probe-Request-Sniffer
 
+Sponsored by Farmingdale State College
+
 Tested using Kali Linux VirtualBox 32-Bit v2020.1
 
 Python v3.8.0
@@ -22,6 +24,9 @@ Aircrack-ng
 ```python
 sniff(iface='YOUR-CARD-NAME', prn = PacketHandler, store=0)
 ```
+
+**How it works**
+This script uses the scapy library and a raspberry pi with a NIC in monitor mode to scan for probe requests within its local proximity. Based off its results it will POST the information count received to a backend PHP server. The count will with the time/location will be help in the database and used in the frontend to show students how busy the area is at any given time. It automatically scans throughout the day for live updating
 
 **Table Layout**
 ```sql
