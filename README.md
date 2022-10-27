@@ -1,6 +1,6 @@
 # Probe-Request-Sniffer
 
-![Not news_letter](./news_letter.JPG)
+![news_letter](./news_letter.JPG)
 
 Sponsored by Farmingdale State College
 
